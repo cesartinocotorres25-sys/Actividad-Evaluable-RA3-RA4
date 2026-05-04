@@ -1,4 +1,8 @@
-name: Java CI with Maven
+- name: Compilar
+  run: javac *.java
+
+- name: Ejecutar tests (si tienes)
+  run: echo "Añade tus tests aquí"
 
 on:
   push:
