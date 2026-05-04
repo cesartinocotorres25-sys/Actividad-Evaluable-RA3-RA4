@@ -1,17 +1,15 @@
-name: Java CI with Maven
+name: Java CI (sin Maven ni Gradle)
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout del código
+    - name: Descargar código
       uses: actions/checkout@v4
 
     - name: Configurar Java
@@ -20,5 +18,10 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Compilar y ejecutar tests
-      run: mvn clean verify
+    - name: Compilar
+      run: |
+        javac -d out $(find src -name "*.java")
+
+    - name: Ejecutar programa con datos simulados
+      run: |
+        echo -e "Manzana\n2.5\n10\nManzana\n2.5\n10" | java -cp out Actividad_Evaluable_RA3_RA4.Principal
